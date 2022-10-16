@@ -20,3 +20,25 @@ gcloud app browse
 ### Commit to git
 
 git push -u origin main
+
+
+### Setup the virtualenv
+
+python3 -m venv env
+source env/bin/activate
+
+pip install -r requirements.txt
+
+
+### Run the application for local development
+
+python main.py
+
+
+
+
+
+
+## Resources
+
+*  https://cloud.google.com/appengine/docs/standard/python3/building-app/writing-web-service

@@ -42,3 +42,4 @@ python main.py
 ## Resources
 
 *  https://cloud.google.com/appengine/docs/standard/python3/building-app/writing-web-service
+*  https://console.cloud.google.com/datastore/entities

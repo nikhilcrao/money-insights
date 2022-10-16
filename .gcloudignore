@@ -20,3 +20,4 @@ __pycache__/
 
 # Ignore the virtualenv files
 env/
+trackr/__pycache__/

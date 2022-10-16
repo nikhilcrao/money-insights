@@ -20,15 +20,44 @@
   <title>Datastore and Firebase Auth Example</title>
   <script src="{{ url_for('static', filename='script.js') }}"></script>
   <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://www.gstatic.com/firebasejs/ui/4.4.0/firebase-ui-auth.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.4.0/firebase-ui-auth.css" />
 </head>
 <body>
+  <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
+  <script>
+    const config = {
+      apiKey: "AIzaSyAqorHHV6keCSMw9rfIhDvFjCSH3F69e8g",
+      authDomain: "money-348904.firebaseapp.com",
+      projectId: "money-348904",
+      storageBucket: "money-348904.appspot.com",
+      messagingSenderId: "118616754484",
+      appId: "1:118616754484:web:93745bb84ed7307c493d61",
+      measurementId: "G-QLS90J60QS"
+    };
+    firebase.initializeApp(config);
+  </script>
 
   <h1>Datastore and Firebase Auth Example</h1>
+  <div id="firebaseui-auth-container"></div>
+  <button id="sign-out" hidden=true>Sign Out</button>
 
-  <h2>Last 10 visits</h2>
-  {% for time in times %}
-    <p>{{ time['timestamp'] }}</p>
-  {% endfor %}
+  <div id="login-info" hidden=true>
+  <h2>Login info:</h2>
+  {% if user_data %}
+    <dl>
+      <dt>Name</dt><dd>{{ user_data['name'] }}</dd>
+      <dt>Email</dt><dd>{{ user_data['email'] }}</dd>
+      <dt>Last 10 visits</dt><dd>
+        {% for time in times %}
+          <p>{{ time['timestamp'] }}</p>
+        {% endfor %} </dd>
+    </dl>
+  {% elif error_message %}
+    <p>Error: {{ error_message }}</p>
+  {% endif %}
+  </div>
 
 </body>
 </html>

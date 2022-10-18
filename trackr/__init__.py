@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask
+from flask_login import LoginManager
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
@@ -14,9 +15,17 @@ def create_app(test_config=None):
         app.config.from_mapping(test_config)
 
     from . import db
-    db.init_app(app)
+    db.init_db(app)
+
+    login_manager = LoginManager()
+    login_manager.init_app(app)
 
     from . import auth
     app.register_blueprint(auth.bp)
+    auth.init_login(login_manager)
+
+    @app.route('/')
+    def index():
+        return '<h1>index</h1><p><a href="/auth/login">Login</a><p><a href="/auth/logout">Logout</a>'
 
     return app

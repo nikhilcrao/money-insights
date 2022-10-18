@@ -1,10 +1,13 @@
 from flask import g
 from google.cloud import ndb
 
-def get_client():
+def client():
     if 'client' not in g:
         g.client = ndb.Client()
     return g.client
+
+def client_context():
+    return client().context()
 
 
 def close_client():
@@ -12,5 +15,6 @@ def close_client():
 
 
 def init_db(app):
-    app.teardown_appcontext(close_client)
-    get_client()
+#    app.teardown_appcontext(close_client)
+#    get_client()
+    pass
